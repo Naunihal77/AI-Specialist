@@ -1,0 +1,5 @@
+{
+  "name": "CogniSketch",
+  "description": "A visual intelligence tutor that transforms images of diagrams and notes into interactive learning modules using Gemini AI.",
+  "requestFramePermissions": []
+}
