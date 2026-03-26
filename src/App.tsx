@@ -74,7 +74,9 @@ export default function App() {
       setMessages(prev => [...prev, { role: "ai", content: fullText }]);
     } catch (error) {
       console.error("Analysis failed:", error);
-      setMessages(prev => [...prev, { role: "ai", content: "Sorry, I couldn't analyze that image. Please try again." }]);
+      const message = error instanceof Error ? error.message : String(error);
+      setResponse(message);
+      setMessages(prev => [...prev, { role: "ai", content: `Sorry, I couldn't analyze that image. ${message}` }]);
     } finally {
       setIsAnalyzing(false);
     }
