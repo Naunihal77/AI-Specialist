@@ -1,6 +1,11 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+if (!apiKey) {
+  throw new Error("Missing Gemini API key. Set VITE_GEMINI_API_KEY in .env.local and restart dev server.");
+}
+
+const ai = new GoogleGenAI({ apiKey });
 
 export async function* analyzeImage(imageBuffer: string, mimeType: string, prompt: string) {
   const model = "gemini-3-flash-preview";
